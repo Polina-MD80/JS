@@ -6,11 +6,13 @@ for (var i = 0; i < arr.length; i++) {
   arr[i].addEventListener("click", function() {
     var innerHtmlButton = this.innerHTML;
     makeSound(innerHtmlButton);
+    addAnimation(innerHtmlButton)
   });
 }
 
 document.addEventListener("keydown", function(event) {
   makeSound(event.key);
+  addAnimation(event.key);
 });
 
 function makeSound(param) {
@@ -48,4 +50,14 @@ function makeSound(param) {
     default:
       console.log("error");
   };
+}
+
+
+function addAnimation(param){
+  var button = document.querySelector("."+param);
+  button.classList.add("pressed");
+
+  setTimeout(function () {
+    button.classList.remove("pressed");
+  }, 100);
 }
